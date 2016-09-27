@@ -116,6 +116,8 @@ BOOL handlingRedirectURL;
             }
         } else {
             NSString *receivedState = [self extractGetParameter:@"state" fromURL: requestURL];
+            receivedState = [receivedState stringByReplacingOccurrencesOfString:@"#" withString:@""];
+            receivedState = [receivedState stringByReplacingOccurrencesOfString:@"!" withString:@""];
             //assert that the state is as we expected it to be
             if ([receivedState isEqualToString:self.application.state]) {
                 //extract the code from the url
